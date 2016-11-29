@@ -14,6 +14,8 @@ static const string kTag = "ONEVOTER: ";
 **/
 OneVoter::OneVoter() {}
 /****************************************************************
+ * this is a test
+ */
 **/
 OneVoter::OneVoter(int sequence, int arrival_seconds, int duration_seconds) {
   sequence_ = sequence;
