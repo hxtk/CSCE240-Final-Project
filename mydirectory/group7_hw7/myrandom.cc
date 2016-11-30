@@ -13,7 +13,7 @@
 /******************************************************************************
  * Constructor
  *
- * Random number 'seed' required to contrain output to
+ * Random number 'seed' required to constrain output to
  * a precise output.
  *
 **/
