@@ -34,6 +34,17 @@ class OneVoter {
 
   /****************************************************************
    * General functions.
+   * OneVoter emulates the basics functions of a voter at the voting booth. It takes in sequence, arrival_seconds, and duration_seconds    
+   * and initializes sequence_, time_arrival_seconds, 
+   * time_start_voting_seconds_, time_vote_duration_seconds_ and which_station.
+   * 
+   * AssignStation is responsible for taking in station_number and    
+   * start_time_seconds and calculating which_station, 	 
+   * time_vote_duration_seconds, and time_waiting_seconds_.
+   *
+   * GetTOD takes time_in_seconds and returns the time of day.
+   *
+   * ConvertTime(takes in time_in_seconds and returns the time of day in the Hour:minute:second format. 
   **/
   void AssignStation(int station_number, int start_time_seconds);
   void DoneVoting();
