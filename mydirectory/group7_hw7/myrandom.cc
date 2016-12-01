@@ -12,6 +12,10 @@
 
 /******************************************************************************
  * Constructor
+ *
+ * Random number 'seed' required to constrain output to
+ * a precise output.
+ *
 **/
 MyRandom::MyRandom() {
   seed_ = 1;
@@ -48,6 +52,9 @@ MyRandom::~MyRandom() {}
  *
  * Parameters:
  *   lambda - the lambda of the exponentially distributed RNs
+ *
+ * Used for:
+ *  Calcuting the interval of arrival times.
  *
  * Returns:
  *   the random number as an 'int' rounded from the 'double'
@@ -105,6 +112,11 @@ double MyRandom::RandomUniformDouble(double lower, double upper) {
  * Parameters:
  *   lower - the smallest value of the RNs
  *   upper - the largest value of the RNs
+ *
+ * Used for:
+ *  -Calculating the vote duration of one voter bounded
+ *   on the maximum service time when creating voters,
+ *   at the time of running a simulation.
  *
  * Returns:
  *   the random number as an 'int'
