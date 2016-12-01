@@ -2,7 +2,8 @@
  * Header file for the random number generator.
  *
  * Author/copyright:  Duncan Buell
- * Date: 23 May 2016
+ * Used/Modified: Group 7
+ * Date: 30 November 2016
  *
 **/
 
