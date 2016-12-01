@@ -1,4 +1,4 @@
-stall #include "onepct.h"
+#include "onepct.h"
 /****************************************************************
 * Implementation for the 'OnePct' class.
 *
