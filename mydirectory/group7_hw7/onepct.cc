@@ -254,6 +254,9 @@ void OnePct::ReadData(Scanner& infile) {
     pct_stations_ = infile.NextInt();
     pct_minority_ = infile.NextDouble();
 
+    // When the number of voting booths being simulated
+    // is one of these three numbers, a histogram of voting
+    // times will be printed.
     int stat1 = infile.NextInt();
     int stat2 = infile.NextInt();
     int stat3 = infile.NextInt();
@@ -279,6 +282,9 @@ void OnePct::RunSimulationPct(const Configuration& config, MyRandom& random,
                               ofstream& out_stream) {
   string outstring = "XX";
 
+  // One can guarantee a minimum number of stations
+  // below which the line will grow on average faster than it will shrink.
+  // This is used as the starting point.
   int min_station_count =
       pct_expected_voters_ * config.time_to_vote_mean_seconds_;
   min_station_count =
@@ -286,6 +292,9 @@ void OnePct::RunSimulationPct(const Configuration& config, MyRandom& random,
   if (min_station_count <= 0) min_station_count = 1;
   int max_station_count = min_station_count + config.election_day_length_hours_;
 
+  // This variable is true if and only if sufficiently many voting stations
+  // have been deployed as to ensure none of the simulated voters were
+  // in line inordinately long.
   bool done_with_this_count = false;
   for (int stations_count = min_station_count;
        stations_count <= max_station_count; ++stations_count) {
@@ -307,6 +316,7 @@ void OnePct::RunSimulationPct(const Configuration& config, MyRandom& random,
       this->RunSimulationPct2(stations_count);
       int number_too_long = DoStatistics(iteration, config, stations_count,
                                          map_for_histo, out_stream);
+
       if (number_too_long > 0) {
         done_with_this_count = false;
       }
@@ -318,6 +328,10 @@ void OnePct::RunSimulationPct(const Configuration& config, MyRandom& random,
     outstring = kTag + "toolong space filler\n";
     Utils::Output(outstring, out_stream, Utils::log_stream);
 
+    // Stations to histo is a map which will contain up to three elements
+    // These will be used as "break points" in the code.
+    // When the number of stations being simulated is equal to one of these
+    // a histogram of detailed voting times will be printed by the following
     if (stations_to_histo_.count(stations_count) > 0) {
       outstring = "\n" + kTag + "HISTO " + this->ToString() + "\n";
       outstring +=
