@@ -35,6 +35,8 @@ class Simulation {
   void RunSimulation(const Configuration& config, MyRandom& random,
                      ofstream& out_stream);
   string ToString();
+
+  // Dead Code: ToStringPcts is not used by this class
   string ToStringPcts();
 
  private:
