@@ -53,7 +53,10 @@ class OneVoter {
   // calculate the wait time of a voter in the line.
   int GetTimeInQ() const;
 
+  // Returns the canonical string form of a user
   string ToString();
+
+  // Returns a header to be used in printing a table of voters
   static string ToStringHeader();
 
  private:

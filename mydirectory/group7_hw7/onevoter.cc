@@ -139,11 +139,15 @@ string OneVoter::ToString() {
 }  // string OneVoter::toString()
 
 /****************************************************************
-* This is dead code and could safely be deleted.
+* The purpose of this function is to indicate the meaning of each field
+* in the ToString function above.
+*
+* This would be useful if one were creating a table of voters etc.
 **/
 string OneVoter::ToStringHeader() {
   string s = kTag;
-  s += "    Seq        Arr           Start             Dur             End     "
-    +  "       Wait         Stn";
+  s += "    Seq        Arr           Start             Dur             End";
+  s += "            Wait         Stn";
   return s;
 }
+
