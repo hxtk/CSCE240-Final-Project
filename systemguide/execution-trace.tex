@@ -34,6 +34,20 @@ VB_0 = \begin{cases}
 \end{cases}
 \end{equation}
 
+Beginning with this number and iterating upwards until no voters are waiting ``too long,'' the program runs the number of iterations indicated by \S\ref{hxtk-config-file}. After all iterations have run, a histogram is printed if this number of voting machines is a breakpoint number for this precinct.
+
+\subsection{CreateVoters}
+
+Each single iteration consists of three parts. First, voters are created. This includes a set of voters waiting at the door when the polls open and exponential random voters at the hourly rates indicated by the configuration file.
+
+\subsection{RunSimulationPct2}
+
+Next, simulation is passed off to another function. This manages the processing of voters through the queue.
+
+\subsection{DoStatistics}
+
+Finally, some statistics are run to determine if any voters waited too long, among other things.
+
 \begin{figure}
 \begin{center}
 \includegraphics[width=\textwidth]{execution_topology}
