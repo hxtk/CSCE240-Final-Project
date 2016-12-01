@@ -1,0 +1,100 @@
+% Copyright: CSCE240-001 - Fall 2016 - Group 7. All rights reserved.
+% Date: 2016-11-30
+%
+% This is the base template file for the System Guide.
+% First it contains the preamble
+% Next, it contains a detailed description of the input and output of the program
+% Sorted in topological order, it provides a listing for each class
+% Finally, it traces an execution example to the most distal node.
+
+\documentclass[letterpaper]{report}
+
+\usepackage[numbers]{natbib}
+\usepackage[hidelinks]{hyperref}
+
+\renewcommand{\bibname}{References}
+\renewcommand{\chaptername}{}
+\usepackage{titlesec}
+\titleformat{\chapter}[hang] 
+{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{1em}{} 
+
+\usepackage{listings}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{dcolumn}
+
+% Used with permission from: https://www.overleaf.com/7261228mqbwdxppwphs
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color
+  basicstyle=\footnotesize,        % size of fonts used for the code
+  breaklines=true,                 % automatic line breaking only at whitespace
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  keywordstyle=\color{blue},       % keyword style
+  stringstyle=\color{mymauve},     % string literal style
+}
+
+\newcolumntype{d}[1]{D{.}{\cdot}{#1} }
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+
+
+\usepackage[intlimits]{mathtools}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+
+
+\usepackage{siunitx}
+
+\usepackage[normalem]{ulem}
+\usepackage{titling}
+
+\title{Voter Simulation: System Guide}
+\author{Hadrian Buckner \and Nicholas Grah \and Brian Griffin \and Peter Sanders \and Tahir Warid} 
+\date{2016-12-01}
+
+\begin{document}
+
+\begin{titlepage}
+
+{\centering
+  {\scshape\Huge CSCE 240 \\ Intro. to Software Engineering\par}
+  \vspace{1cm}
+  {\scshape\LARGE \thetitle \par}
+  \vspace{1cm}
+  {\Large \theauthor \par}
+  \vspace{1cm}
+  {\scshape\large \thedate \par}
+}
+
+\vfill
+\section*{Abstract}
+\input{abstract.tex}
+\vfill
+\end{titlepage}
+
+\include{inputs}
+
+\include{outputs}
+
+\include{MyRandom}
+
+\include{OneVoter}
+
+\include{Configuration}
+
+\include{OnePct}
+
+\include{Simulation}
+
+\include{Main}
+
+\include{execution-trace}
+
+\end{document}

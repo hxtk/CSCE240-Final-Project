@@ -1,0 +1,48 @@
+% Copyright: CSCE240-001 - Fall 2016 - Group 7. All rights reserved.
+% Date: 2016-11-30
+%
+% This chapter the data written to the output files used by this program.
+
+\chapter{Output Files} \label{hxtk-outfiles}
+
+First, \texttt{MAIN} records the time and begins execution. Messages are printed to indicate the names of the output files.
+
+Next, the configuration data is printed with the tag \texttt{CONFIG}. See \S\ref{hxtk-config-file} for more information.
+
+\texttt{SIM} will be the next tag encountered. This is the \texttt{Simulation} class. It prints out the canonical string form of the \texttt{Precinct} being simulated. See \S\ref{ngrah-onepct-tostring} for more details on this string. As execution is passed off to this precinct, the next tag encountered is \texttt{OnePct}.
+
+First, the canonical string form of the precinct is printed again. Next, the canonical string forms of the simulations for that precinct with one voting booth are printed. The number of simulations corresponds to the number of iterations specified in the configuration file. The canonical string form of a simulation may be found in Table~\ref{hxtk-canon-string-sim}. An example string follows, with superfluous whitespace omitted for the sake of space.
+
+\vspace{1.0cm}
+
+0 1 XXX00100 100 1 stations, mean/dev wait (mins) 0.43 0.95 toolong 0 0.00 0 0.00 0 0.00
+
+\vspace{1.0cm}
+
+This is repeated for as many iterations as were specified in the config file.
+
+If the current number of voting booths was specified as a breakpoint in the Precinct File (See \S\ref{hxtk-pct-file}), a histogram is printed. One star on the histogram represents a computed value between one (1) and fifty (50) of voters. The histogram has a resolution of minutes and relates to the probability distribution function of voter wait time.
+
+This, in turn, is repeated with incrementally more voting stations until there are no voters waiting too long.
+
+Finally, this is repeated by \texttt{SIM} over the set of all precincts before returning execution to \texttt{MAIN}, printing the ending execution time.
+
+\begin{table}[!h]
+\caption{Canonical String Form of a Precinct Simulation}
+\label{hxtk-canon-string-sim}
+\begin{description}
+\item[Simulation Number]
+\item[Precinct ID]
+\item[Precinct Name]
+\item[Expected Voters]
+\item[Number of Stations] This is followed by the text ``stations,''
+\item[Mean time to vote (mins)] This is preceded by the text ``mean/dev wait (mins)''
+\item[Standard Deviation of time to vote]
+\item[Number of voters waiting too long] This is preceded by the text ``toolong''
+\item[Percent of voters waiting too long]
+\item[Number of voters waiting much too long] This is defined as ten (10) minutes longer than simply ``too long''
+\item[Percent of voters waiting much too long]
+\item[Number of voters waiting very much too long] This is defined as twenty (20) minutes longer than simply ``too long''
+\item[Percent of voters waiting very much too long]
+\end{description}
+\end{table}

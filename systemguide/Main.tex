@@ -1,0 +1,18 @@
+% Copyright: CSCE240-001 - Fall 2016 - Group 7. All rights reserved.
+% Date: 2016-12-01
+%
+% This chapter describes the Main class.
+% This class is the entry point for the voter simulation program. This class ensures the correct arguments were passed in, opens a Utils log file, and passes execution to the Simulation class.  
+
+\chapter{Main}
+The Main class is the entry point in the Voting Simulation program.
+Main is responsible for gathering input and checking that arguments passed in are of the correct type.  Main also opens the Utils log file before passing executi0on to the Simulation class.
+
+Main does not contain any member functions or variables.
+
+Main supplies input data to the configuration class and the MyRandom class, and passes data to the Simulation class that will be used to create the voting precincts.
+
+Once Input files have been properly handles, an instance of the Simulation class is created, and RunSimulation is called for that instance of simulation.
+
+
+

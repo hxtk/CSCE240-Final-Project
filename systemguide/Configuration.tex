@@ -1,0 +1,34 @@
+% Copyright: CSCE240-001 - Fall 2016 - Group 7. All rights reserved.
+% Date: 2016-12-01
+%
+% This file describes the purpose of the Configuration class.
+
+\chapter{Configuration}
+
+The Configuration class is dedicated to reading in the input files detailed in Chapter~\ref{hxtk-input-files}. All varaibles are publically accessible, so maintainers should take care to ensure that they are not inadvertently modified.
+
+\begin{lstlisting}[language=C++]
+static const int kDefaultSeed = 19;
+static const int kDummyConfigInt = -111;
+static const double kDummyConfigDouble = -22.22;
+
+// This is the seed to be used for the Random Number Generator
+int seed_ = kDefaultSeed;
+
+int election_day_length_hours_ = kDummyConfigInt;
+int election_day_length_seconds_ = kDummyConfigInt;
+int time_to_vote_mean_seconds_ = kDummyConfigInt;
+int max_expected_to_simulate_ = kDummyConfigInt;
+int min_expected_to_simulate_ = kDummyConfigInt;
+int wait_time_minutes_that_is_too_long_ = kDummyConfigInt;
+int number_of_iterations_ = kDummyConfigInt;
+vector<int> actual_service_times_;
+
+// This is the percentage of voters already in line when pools opened.
+double arrival_zero_ = kDummyConfigDouble;
+
+// This array will contain |election_day_length_hours_| elements
+// which shall correspond to the percentage of voters arriving
+// during each hour of the election day
+vector<double> arrival_fractions_;
+\end{lstlisting}

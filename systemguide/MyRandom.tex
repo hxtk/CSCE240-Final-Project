@@ -1,0 +1,67 @@
+% Copyright: CSCE240-001 - Fall 2016 - Group 7. All rights reserved.
+% Date: 2016-12-1
+%
+% This chapter describes MyRandom class.
+% This class is used to generate seudo-random numbers from a seed.
+
+
+\chapter{MyRandom}
+The MyRandom class is used to generate pseudo random numbrs from a seed provided.  The functions contained in MyRandom are used by this program to generate voter data.
+
+
+\section{Constructor}
+The MyRandom class contains overloaded constructor functions. The first instance uses the integer 1 as the seed value, while the second takes an integer parameter value that is used for the seed. 
+If a seed value is provided, MyRandom will use that value, but if a seed value is not provided, MyRandom will use a seed value of 1.
+
+\subsection{Seed Not Provided}
+\begin{lstlisting}[language=C++]
+ MyRandom::MyRandom() {
+  seed_ = 1;
+  generator_.seed(seed_);
+}
+\end{lstlisting}
+
+\subsection{Seed Provided}
+\begin{lstlisting}[language=C++]
+ MyRandom::MyRandom(unsigned seed) {
+  seed_ = seed;
+  generator_.seed(seed_);
+}
+\end{lstlisting}
+ 
+\section{General Functions}
+
+\subsection{RandomExponentialInt}
+\begin{description}
+\item[Parameters] double lambda
+\item[Returns] int r
+\item[Usage] This function takes a double lambda as inpout, and returns an integer r.  The lambda is the is the lambda value of the exponentially distributed real numbers.  This function generates a double value based on the lambda constraint, rounds the double to the nearest integer, and returns this integer value.
+This function is used in the Simulation Program to calculate the interval of voter arrival times.
+\end{description}
+
+
+\subsection{RandomNormal}
+\begin{description}
+\item[Parameters] double mean, double dev
+\item[Returns] double r
+\item[Usage] This function takes in doubles mean and dev for input, and generates a pseudo random number from a set with the provided mean and standard deviation.
+\end{description}
+
+
+\subsection{RandomUniformInt}
+\begin{description}
+\item[Parameters] int lower, int upper
+\item[Returns] int r
+\item[Usage] This function takes in two integer s as parameters, describing the maximum and minimum values that can be generated.  This function returns a pseudo-randomly generated value that falls between the upper and lower limits provided.
+In the Simulation Program, this function is used to calculate the time taken for a voter to finish voting.  This function works well time taking to vote must be greater than zero, and less than the maximum service time specifed in the config file.
+\end{description}
+
+
+
+\section{Private Members}
+\begin{description}
+\item[unsigned int seed\_] The value given to start pseudo-random number generation.  This number can be provided when MyRandom is declared, or will be the default value 1.
+\item[std::mt19937 generator\_] Pseudo-random number generator provided by the random library.
+\end{description}
+
+
