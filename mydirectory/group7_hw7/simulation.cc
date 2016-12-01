@@ -3,7 +3,8 @@
 * Implementation for the 'Simulation' class.
 *
 * Author/copyright:  Duncan Buell
-* Date: 19 July 2016
+* Used/Modified: Group 7
+* Date: 1 December 2016
 *
 **/
 
@@ -25,8 +26,7 @@ Simulation::~Simulation() {}
 
 /****************************************************************
 * General functions.
-**
-/
+**/
 
 /****************************************************************
  * Function 'ReadPrecincts'.
