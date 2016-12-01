@@ -487,7 +487,9 @@ void Utils::Output(
     std::ostream& stream1,
     std::ostream& stream2) {
   stream1 << out_string;
+  stream1.flush();
   stream2 << out_string;
+  stream2.flush();
 }
 
 /****************************************************************
