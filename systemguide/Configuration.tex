@@ -5,7 +5,9 @@
 
 \chapter{Configuration}
 
-The Configuration class is dedicated to reading in the input files detailed in Chapter~\ref{hxtk-input-files}. All varaibles are publically accessible, so maintainers should take care to ensure that they are not inadvertently modified.
+The Configuration class is dedicated to reading in the input files detailed in Chapter~\ref{hxtk-input-files}. All varaibles are publically accessible, so maintainers should take care to always pass references to this object as \texttt{const}.
+
+This class is a \emph{Singleton}. A maintainer may wish to refactor it to this design pattern.
 
 \begin{lstlisting}[language=C++]
 static const int kDefaultSeed = 19;

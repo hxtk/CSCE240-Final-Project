@@ -7,30 +7,9 @@
 \chapter{Simulation}
 This class begins performing the simulation by creating the voting precincts from the input file, and calling the RunSimulationPct function for each precinct.
 
-\section{General Functions}
-
-\subsection{ReadPrecincts}
-\begin{description}
-\item[Parameters] Scanner\& infile
-\item[Returns] void
-\item[Usage] Using a reference to the scanner reading from the input file, this function generates instances of OnePct and calls ReadData for that precinct, to populate it's member variables with values.
+\section{ReadPrecincts}
+Using a reference to the scanner reading from the input file, this function generates instances of OnePct and calls ReadData for that precinct, to populate it's member variables with values.
 This continues until the scanner stops providing input.  These precints are stored in the pcts\_ map.
-\end{description}
 
-\subsection{RunSimulation}
-\begin{description}
-\item[Parameters] const Configuration\& config, MyRandom\& random, ofstream\& out\_stream
-\item[Returns] void
-\item[Usage] This function iterates through the pcts\_ map, and, if the precinct has an appropriate number of voters for the simulation, calls RunSimulationPct for that precinct.
-\end{description}
-
-\subsection{ToString}
-\begin{description}
-\item[Usage] Standard ToString function; Returns ToString of precincts stored in pcts\_ map.
-\end{description}
-
-\section{Private Variables}
-
-\begin{description}
-\item[map<int, OnePct> pcts\_] This map contains all instances of OnePct that will be used in the simulation.
-\end{description}
+\section{RunSimulation}
+This function iterates through the pcts\_ map, and, if the precinct has an appropriate number of voters for the simulation, calls \texttt{RunSimulationPct} for that precinct.

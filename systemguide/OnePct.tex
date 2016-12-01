@@ -5,9 +5,121 @@
 % This class is an instance of a single voting precinct for use in the simulation.
 
 \chapter{OnePct}
-The OnePct class is used to represent a single voting precinct during the simulation.
-This class is used by the Simulation class.
 
+The \texttt{OnePct} class is where the bulk of the work for this program happens.
+
+Much of the data stored are statistics that are intended only to be presented to the user. The program does not use them anywhere as of this version.
+
+This class depends upon the following public members of \texttt{Configuration}:
+
+\begin{center}
+\begin{lstlisting}[language=C++]
+int election_day_length_hours_;
+int election_day_length_seconds_;
+int time_to_vote_mean_seconds_;
+int wait_time_minutes_that_is_too_long_;
+int number_of_iterations_;
+vector<int> actual_service_times_;
+double arrival_zero_;
+vector<double> arrival_fractions_;
+\end{lstlisting}
+\end{center}
+
+\section{ToString} \label{ngrah-onepct-tostring}
+
+This defines the canonical string form of a Precinct. \emph{Note: this is not the same as the canonical string form of a precinct simulation as described in Table~\ref{hxtk-canon-string-sim}.} The Canonical String Form has the following whitespace-delimited fields:
+
+\begin{description}
+\item[ID] The integer-valued ID of the precinct. This must be unique within its batch.
+\item[Name] This is a human-readable text identifier for the precinct. \emph{Note: since fields are whitespace delimited, this cannot contain whitespace}.
+\item[Turnout] This is a percentage (\%) of voters who voted out of those who were registered for this precinct.
+\item[Voters] This is the number of people registered to vote at this precinct.
+\item[Expected Voters]
+\item[Voter Rate] This is the mean number of voters expected per hour.
+\item[Booths] This is the number of voting booths being used by the precinct.
+\item[\% Minority] This is the percentage of minority voters out of all voters.
+\item[HH] This is the string literal ``HH'' and serves as the opening delimiter for the set of histogram breakpoints.
+\item[Break Point(s)] These are the number(s) of voting booths for which a histogram should be printed. There may be up to three (3).
+\item[HH] This is the string literal ``HH'' and serves as the corresponding closing delimiter.
+\end{description}
+
+\section{ReadData}
+
+\begin{center}
+\begin{tabular}{l r}
+Access & \texttt{public} \\
+Return Type & \texttt{void} \\
+Arguments & \texttt{Scanner\&}
+\end{tabular}
+\end{center}
+
+This function accepts an open Scanner pointing at a \emph{complete} standard serialization of an \texttt{OnePct} object. This is further detailed in \S\ref{hxtk-pct-file}. If the Scanner is not opened or is not pointing at a valid input string, the program will crash.
+
+\emph{No member function may be called until this function has completed.}
+
+\section{RunSimulationPct}
+
+\begin{center}
+\begin{tabular}{l r}
+Access & \texttt{public} \\
+Return Type & \texttt{void} \\ \hline
+Arguments & \texttt{const Configuration\&}\\
+          & \texttt{MyRandom\&}\\
+          & \texttt{ofstream\&}
+\end{tabular}
+\end{center}
+
+This function runs a series of simulations and analyzes their outcomes based on the data contained in the Configuration object.
+
+Beginning with the minimum value that cannot be rejected trivially, it uses incrementally more voting booths in the simulation until none of the voters are waiting too long. This is done by creating a randomized set of voters with \texttt{CreateVoters} and passing off the processing of the queue to \texttt{RunSimulationPct2}.
+
+Once that is complete, \texttt{DoStatistics} is executed and if this number of voting booths was specified as a breakpoint, a histogram is printed.
+
+\section{CreateVoters}
+
+\begin{center}
+\begin{tabular}{l r}
+Access & \texttt{private} \\
+Return Type & \texttt{void} \\ \hline
+Arguments & \texttt{const Configuration\&}\\
+          & \texttt{MyRandom\&}\\
+          & \texttt{ofstream\&}
+\end{tabular}
+\end{center}
+
+This uses random elements from a log-normal data set which should be made available to the program as specified in \S\ref{hxtk-data-file}.
+
+First a set of voters waiting at the door on poll open is created, and then an exponential random distribution is used to bring in a given rate of voters for each hour.
+
+\section{RunSimulationPct2}
+
+\begin{center}
+\begin{tabular}{l r}
+Access & \texttt{private} \\
+Return Type & \texttt{void} \\
+Arguments & \texttt{int}
+\end{tabular}
+\end{center}
+
+This function accepts the number of voting booths which should be used by the precinct and attempts to process the queue. This program must be run after \texttt{CreateVoters}
+
+\section{DoStatistics}
+
+\begin{center}
+\begin{tabular}{l r}
+Access & \texttt{private} \\
+Return Type & \texttt{int} \\ \hline
+Arguments & \texttt{int}\\
+          & \texttt{const Configuration\&}\\
+          & \texttt{int}\\
+          & \texttt{map$<$int, int$>$}\\
+          & \texttt{ofstream\&}
+\end{tabular}
+\end{center}
+
+This function performs analysis of the data from the simulations. It must be called \emph{after} \texttt{RunSimulationPct2}. This function calls \texttt{ComputeMeanAndDev} and is the only valid context in which to do so.
+
+\iffalse % BLOCK COMMENT
 \section{Member Variables}
 
 \begin{description}
@@ -28,6 +140,7 @@ This class is used by the Simulation class.
 \item[multimap$<$int, OneVoter$>$ voters\_pending\_] This map begins as a copy of voters\_backu\_ before any voting has occurred. Voters are removed from this map as they finish voting, and are added voters\_done\_voting\_.
 \item[multimap$<$int, OneVoter$>$ voters\_voting\_] This map contains voters who are currently at a voting station. Once a voter finishes voting, they are moved to voters\_done\_voting\_.
 \end{description}
+
 
 \section{General Functions}
 
@@ -94,4 +207,4 @@ This class is used by the Simulation class.
 \item[Usage] This function is called by the RunSimulationPct function.  This function takes the number of open voting stations as input, and simulates moving the line of waiting voters through the voting stations.
 \end{description}
 
-
+\fi % END BLOCK COMMENT
