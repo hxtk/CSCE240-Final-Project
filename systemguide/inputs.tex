@@ -1,0 +1,17 @@
+\chapter{Input Files}
+
+\section{Configuration File}
+
+The configuration begins with a one-line header containing the following input data:
+
+\begin{description}
+\item[int] Some arbitrary random number seed.
+\item[int$^+$] The length (in hours) of the election day.
+\item[int$^+$] The best-guess mean service time of a voter in minutes.
+\item[int$^+$] The minimum number of voters-per-precinct that will be supported by this simulation.
+\item[int$^+$] The maximum number of voters-per-precinct that will be supported by this simulation.
+\item[int$^+$] The maximum acceptable amount of time for a voter to wait.
+\item[int$^+$] The number of iterations of the simulation to run. As more iterations are run, the data becomes asymptotically more ``complete'' with respect to consideration of outliers, but the execution time grows linearly.
+\end{description}
+
+The following line(s) should contain one $(1)$ more whitespace-delimited entries than the number of hours in the election day. These should be percent (\%) values and should sum to one hundred (100). The first value represents the fraction of voters who voted absentee or otherwise in advance. The subsequent values represent the fraction of voters arriving in each hour of the election day.
