@@ -2,8 +2,9 @@
  * Header for the 'OneVoter' class
  *
  * Author/copyright:  Duncan Buell
- * Used/Modified: Group 7
- * Date: 1 December 2016
+ * Used/Modified: Group 7.
+ * Date: 6 October 2016
+ * Date Last Modified: 30 November 2016
  *
 **/
 
@@ -54,7 +55,10 @@ class OneVoter {
   // calculate the wait time of a voter in the line.
   int GetTimeInQ() const;
 
+  // Returns the canonical string form of a user
   string ToString();
+
+  // Returns a header to be used in printing a table of voters
   static string ToStringHeader();
 
  private:
