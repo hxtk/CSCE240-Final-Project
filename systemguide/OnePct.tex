@@ -11,29 +11,29 @@ This class is used by the Simulation class.
 \section{Member Variables}
 
 \begin{description}
-\item[int pct_expected_voters_] Number of voters expected to vote at this precinct.
-\item[int pct_expected_per_hour_] Number of voters expected to vote at this precinct over a one hour period.
-\item[double pct_minority_] Percentage of a precinct's voters who identified as a minority.
-\item[string pct_name_] Name of an individual precinct.
-\item[int pct_number_] Number assigned as an identifier to an individual precinct.
-\item[double pct_turnout_] Percentage of the number of expected voters who showed up to vote at a precinct.  This is not used in calculations.
-\item[int pct_stations_] Number of voting stations at a single precinct.
-\item[int pct_num_voters_]  Total number of voters who voted in a precinct.
-\item[double wait_dev_seconds_] The standard deviation of the wait times of the voters in a precinct in seconds.
-\item[double wait_mean_seconds_] The mean wait time of the voters in a precinct in seconds.
-\item[set<int> stations_to_histo_] Set containing the number of voting stations used in the simulation.  This is meant to be displayed as part of a histogram of the data.
-\item[vector<int> free_stations_] Vector containing the stations not currently in use.  This is used in the RunSimulationPct2 function.
-\item[multimap<int, OneVoter> voters_backup_] This is a map containing all of the voters created by the CreateVoters function.  This map is populated before the real work of the simulation begins.
-\item[multimap<int, OneVoter> voters_done_voting_] This map contains the voters who have already voted in the simulation. Voters in voters_voting_ are moved here when they have finished voting.
-\item[multimap<int, OneVoter> voters_pending_] This map begins as a copy of voters_backu_ before any voting has occurred. Voters are removed from this map as they finish voting, and are added voters_done_voting_.
-\item[multimap<int, OneVoter> voters_voting_] This map contains voters who are currently at a voting station. Once a voter finishes voting, they are moved to voters_done_voting_.
+\item[int pct\_expected\_voters\_] Number of voters expected to vote at this precinct.
+\item[int pct\_expected\_per\_hour\_] Number of voters expected to vote at this precinct over a one hour period.
+\item[double pct\_minority\_] Percentage of a precinct's voters who identified as a minority.
+\item[string pct\_name\_] Name of an individual precinct.
+\item[int pct\_number\_] Number assigned as an identifier to an individual precinct.
+\item[double pct\_turnout\_] Percentage of the number of expected voters who showed up to vote at a precinct.  This is not used in calculations.
+\item[int pct\_stations\_] Number of voting stations at a single precinct.
+\item[int pct\_num\_voters\_]  Total number of voters who voted in a precinct.
+\item[double wait\_dev\_seconds\_] The standard deviation of the wait times of the voters in a precinct in seconds.
+\item[double wait\_mean\_seconds\_] The mean wait time of the voters in a precinct in seconds.
+\item[set$<$int$>$ stations\_to\_histo\_] Set containing the number of voting stations used in the simulation.  This is meant to be displayed as part of a histogram of the data.
+\item[vector$<$int$>$ free\_stations\_] Vector containing the stations not currently in use.  This is used in the RunSimulationPct2 function.
+\item[multimap$<$int, OneVoter$>$ voters\_backup\_] This is a map containing all of the voters created by the CreateVoters function.  This map is populated before the real work of the simulation begins.
+\item[multimap$<$int, OneVoter$>$ voters\_done\_voting\_] This map contains the voters who have already voted in the simulation. Voters in voters\_voting\_ are moved here when they have finished voting.
+\item[multimap$<$int, OneVoter$>$ voters\_pending\_] This map begins as a copy of voters\_backu\_ before any voting has occurred. Voters are removed from this map as they finish voting, and are added voters\_done\_voting\_.
+\item[multimap$<$int, OneVoter$>$ voters\_voting\_] This map contains voters who are currently at a voting station. Once a voter finishes voting, they are moved to voters\_done\_voting\_.
 \end{description}
 
 \section{General Functions}
 
 \subsection{ReadData}
 \begin{description}
-\item[Parameters] Scanner& infile
+\item[Parameters] Scanner\& infile
 \item[Returns] void
 \item[Usage] ReadData is passed in a reference to a scanner as input.  The data read by the scanner is used to provide values for the member variables of an instance of OnePct.
 \end{description}
@@ -41,23 +41,24 @@ This class is used by the Simulation class.
 
 \subsection{RunSimulationPct}
 \begin{description}
-\item[Parameters] const Configuration& config, MyRandom& random, ofstream& out_stream
+\item[Parameters] const Configuration\& config, MyRandom\& random, ofstream\& out\_stream
 \item[Returns] void
 \item[Usage] RunSimulationPct does the real work when simulating a single voting precinct.  This function generates voters, simulates voting for a precinct, and collects and stores the data from the simulation.
 \end{description}
 % TO-DO 
+
 \subsection{ToString} \label{ngrah-onepct-tostring}
 \begin{description}
 \item[Parameters] none
 \item[Returns] string s
 \item[Usage] ToString Formats the information collected during the voting simulation, as well as the expected voters and expected voters per hour, and stores it to a string s.  String s is returned.
-\item[Format] pct_number  pct_name_ pct_turnout_  pct_num_voters_  pct_expected_voters_  pct_expected_per_hour_  pct_stations_ pct_minority_  "HH" Stations_to_histo_ "HH"
+\item[Format] pct\_number  pct\_name\_ pct\_turnout\_  pct\_num\_voters\_  pct\_expected\_voters\_  pct\_expected\_per\_hour\_  pct\_stations\_ pct\_minority\_  "HH" Stations\_to\_histo\_ "HH"
 \item[Example] 1  XXX00100 20.20      10101     100     235  8   10.30 HH    0 HH
 \end{description}
 
 \subsection{ToStringVoterMap}
 \begin{description}
-\item[Parameters] string label, multimap<int, OneVoter> themap
+\item[Parameters] string label, multimap$<$int, OneVoter$>$ themap
 \item[Returns] string s
 \item[Usage] Takes a map of instances of voters as input.  This function iterates through the map of voters, calling ToString for each, and storing the returned string into string s.  This function then returns string s.
 \end{description}
@@ -67,14 +68,14 @@ This class is used by the Simulation class.
 
 \subsection{CreateVoters}
 \begin{description}
-\item[Parameters] const Configuration& config, MyRandom& random, ofstream& out_stream
+\item[Parameters] const Configuration\& config, MyRandom\& random, ofstream\& out\_stream
 \item[Returns] void
 \item[Usage] This function is called by RunSimulationPct.  This function uses input from the config file, number of expected voters, and the random number generator to generate all the instances of voters used to simulate voting in a single precinct.
 \end{description}
 
 \subsection{DoStatistics}
 \begin{description}
-\item[Parameters] int iteration, const Configuration& config, int station_count, map<int, int>& map_for_histo, ofstream& out_stream
+\item[Parameters] int iteration, const Configuration\& config, int station\_count, map$<$int, int$>$\& map\_for\_histo, ofstream\& out\_stream
 \item[Returns] toolongcount (Number of voters who waited for too long)
 \item[Usage] This function is called by RunSimulation.pct to determine the mean and standard deviation of vote times, and the number of voters who waited for too long at a single precinct.
 \end{description}
@@ -88,7 +89,7 @@ This class is used by the Simulation class.
 
 \subsection{RunSimulationPct2}
 \begin{description}
-\item[Parameters] int stations_count
+\item[Parameters] int stations\_count
 \item[Returns] void
 \item[Usage] This function is called by the RunSimulationPct function.  This function takes the number of open voting stations as input, and simulates moving the line of waiting voters through the voting stations.
 \end{description}
