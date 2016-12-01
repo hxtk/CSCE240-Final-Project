@@ -49,12 +49,15 @@ class OnePct {
   **/
   // ReadData takes input and sets variable values for a single precinct.
   void ReadData(Scanner& infile);
+  
   // RunSimulationPct simulates the voting process for a single precinct.
   void RunSimulationPct(const Configuration& config, MyRandom& random,
                         ofstream& out_stream);
+  
   // ToString Is a standard ToString function for data related to a single 
   //   precinct.
   string ToString();
+  
   // ToStringVoterMap is a standard ToString function for voter data collected
   //   during the simulation.
   string ToStringVoterMap(string label, multimap<int, OneVoter> themap);
@@ -86,6 +89,7 @@ class OnePct {
   // CreateVoters generates instances of OneVoter to be used in the simulation.
   void CreateVoters(const Configuration& config, MyRandom& random,
                     ofstream& out_stream);
+  
   // DoStatistics determines the number of voters who waited too long, and uses
   //  ComputeMeanAndDev to compute the mean and standard deviation of wait 
   //  times.  This function also formats this information into a string and 
@@ -94,9 +98,11 @@ class OnePct {
   int DoStatistics(int iteration, const Configuration& config,
                    int station_count, map<int, int>& map_for_histo,
                    ofstream& out_stream);
+  
   // ComputeMeanAndDev computes the mean and standard deviation of voter wait
   //  times.
   void ComputeMeanAndDev();
+  
   // RunSimulationPct2 is called by RunSimulationPct.
   // This function simulates moving lines of voters through polling stations 
   //  for a single precinct. 
