@@ -21,3 +21,49 @@ The configuration begins with a one-line header containing the following input d
 \end{description}
 
 The following line(s) should contain one $(1)$ more whitespace-delimited entries than the number of hours in the election day. These should be percent (\%) values and should sum to one hundred (100). The first value represents the fraction of voters who voted absentee or otherwise in advance. The subsequent values represent the fraction of voters arriving in each hour of the election day.
+
+\section{Data File}
+
+This file is hard-coded into the program. The program must be executed from two directories below a directory containing \texttt{dataallsorted.txt}. In other words, \texttt{../../dataallsorted.txt} must contain the data file.
+
+This file should contain space-delimited integer values that represent voter service times in seconds. These values should be sorted in non-decreasing order.
+
+\section{Precinct File}
+
+The precinct file contains the definitions of arbitrarily many precincts.
+
+\vspace{0.5cm}
+
+\emph{Note: The file must contain nothing but complete precincts. Any superfluous text, any incomplete entries, or any invalid entries will cause the program to exit.}
+
+\vspace{0.5cm}
+
+A Precinct is defined by the following information:
+
+\begin{description}
+\item[int] Precinct ID. This is a \emph{unique} numeric identifier for the precinct.
+\item[text] Precinct Name. \emph{Note: Must NOT contain whitespace}.
+\item[real] Precinct Turnout. The percentage of registered voters in a given precinct who actually voted.
+\item[int$^+$] Actual number of voters.
+\item[int$^+$] Number of voters expected.
+\item[int$^+$] Expected rate of voters (voters per hour).
+\item[int$^+$] Number of voting booths.
+\item[real] Percent of minority voters.
+
+
+% TODO(hxtk): I have no idea what these three stats mean.
+%             Ngrah: you documented OnePct. Do you have anything to add?
+\item[int$^+$] The last three items are used to set breakpoints. Detailed statistics are given as a histogram when the number of simulated voting booths is equal to the number given in these positions. Zero (0) is used to indicate the breakpoint is not used.
+\item[int$^+$] 
+\item[int$^+$] 
+\end{description}
+
+Only the number of expected voters and the precinct ID are used by the simulation. The other values are statistics that should be presented to the end user along with the simulation data.
+
+\section{Output Files}
+
+The last two arguments passed in the program call should be two file locations. The user executing this program must have write privileges at the specified location. The system must have on the order of megabytes of free space. Any files already existing at these locations will be overwritten.
+
+% TODO(hxtk): create a chapter with label |hxtk-outfiles|
+%             detailing the output of the program.
+The first file is used for the output of the program. The second file will also contain the output of the program, but if debugging options are turned on at compile-time, it will also contain log information. See Chapter~\ref{hxtk-outfiles} for detailed information on their contents.
