@@ -2,6 +2,7 @@
  * Header for the 'OneVoter' class
  *
  * Author/copyright:  Duncan Buell
+ * Used/Modified: Group 7.
  * Date: 6 October 2016
  *
 **/
