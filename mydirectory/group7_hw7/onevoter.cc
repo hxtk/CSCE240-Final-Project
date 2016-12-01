@@ -139,11 +139,11 @@ string OneVoter::ToString() {
 }  // string OneVoter::toString()
 
 /****************************************************************
-*
+* This is dead code and could safely be deleted.
 **/
 string OneVoter::ToStringHeader() {
   string s = kTag;
   s += "    Seq        Arr           Start             Dur             End     "
-       "       Wait         Stn";
+    +  "       Wait         Stn";
   return s;
 }
