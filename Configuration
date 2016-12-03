@@ -1,0 +1,46 @@
+% Copyright: CSCE240-001 - Fall 2016 - Group 7. All rights reserved.
+% Date: 2016-12-01
+%
+% This chapter describes the OnePct class.
+% This chapter describes the Configuration class.  This class is responsible for managing input data to all classes in the program, with the exception of main.
+
+\chapter{Configuration}
+The Configuration class stores and provides input data to all classes in the Voting Simulation Program, with the exception of Main.
+
+\section{Public Variables}
+
+\begin{description}
+\item[int seed_] This integer is the seed provided to the pseudo-random number generator.
+\item[int election_day_length_hours_]  Total number of hours of the day on which voting takes place.
+\item[int election_day_length_seconds_] Total number of seconds of the day on which voting takes place.
+\item[int time_to_vote_mean_seconds_] Mean voting time used to generate Voter's 
+\item[int max_expected_to_simulate_] Maximum number of voters allowed for a single precinct.  If a precinct contains more voter's data than the value specified, the precinct is discarded as an outlier by the RunSimulation function in the Simulation class.
+\item[int min_expected_to_simulate_] Minimum number of voters allowed for a single precinct.  If a precinct contains voter data for a number of voters less than or equal to the specified minimum, the precinct is discarded as an outlier.
+\item[int wait_time_minutes_that_is_too_long_] This integer determines  at what point a Voter's wait time is considered "too long".
+\item[int number_of_iterations_] Specifies the number of times that the simulation will be run.
+\item[vector<int> actual_service_times_] Vector containing actual voter service times.  These values are used for the voter service times, rather than randomly generated service times to decrease the likelihood of outliers.
+\item[double arrival_zero_] Percentage of voters present when a precinct opened. This is used to calculate the number of voters who are in line when a precinct opens.
+\item[vector<double> arrival_fractions_] This vector contains fractions indicating what fraction of the voters came during which hour while the precinct was open.
+\end{description}
+
+\section{General Functions}
+
+\subsection{GetMaxServiceSubscript}
+This function returns one less than the size of the actual_service_times_ vector.  This value is used to iterate through the voter service times while assigning these values to instances of OneVoter.
+
+\subsection{ReadConfiguration}
+\begin{description}
+\item[Parameters] Scanner& instream
+\item[Returns] void
+\item[Usage] This function is called by Main.  This function takes in a reference to a scanner reading from the input files.  The input data is used to assign values the the variables contained within the config file.
+\end{description}
+
+\subsection{ToString}
+\begin{description}
+\item[Usage] ToString is a standard ToString function.  It returns a string s containing the formatted values of the variables contained within the configuration class.
+\end{description}
+
+
+
+
+
